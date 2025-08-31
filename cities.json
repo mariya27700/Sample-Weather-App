@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Kannur",
+    "main": { "temp": 28 },
+    "weather": [{ "description": "Sunny" }]
+  },
+  {
+    "name": "Delhi",
+    "main": { "temp": 32 },
+    "weather": [{ "description": "Cloudy" }]
+  },
+  {
+    "name": "Mumbai",
+    "main": { "temp": 30 },
+    "weather": [{ "description": "Rainy" }]
+  }
+]

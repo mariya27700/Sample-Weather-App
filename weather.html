@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather app</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f8ff;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .weather {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+    </head>
+    <body>
+        <h1>Weather App</h1>
+        <input class="in" type="text" required>
+        <button class="submit" onclick="weatherResult();">Enter</button>
+        <div class="weather"></div>
+    </body>
+    <script>
+        function weatherResult(){
+            
+            let city = document.querySelector('.in').value.trim();
+            fetch('cities.json')
+
+            .then(res=>res.json())
+            .then(data=>{
+                 const weatherData = data.find(item => item.name.toLowerCase() === city.toLowerCase());
+
+        if(weatherData){
+            document.querySelector(".weather").innerHTML =
+                `City: ${weatherData.name} <br> Temp: ${weatherData.main.temp} °C <br> Condition: ${weatherData.weather[0].description}`;
+        } else {
+            document.querySelector(".weather").innerHTML = "City not found!";
+        }
+    })
+    .catch(error => console.log("error " + error));
+
+    document.querySelector('.in').value = "";
+}
+
+
+
+function clear(){
+     document.querySelector('.in').value=" ";
+}
+    </script>
+</html>
